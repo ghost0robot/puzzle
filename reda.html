@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Puzzle Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            height: 100vh;
+        }
+        .card {
+            width: 300px;
+            height: 400px;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card.active {
+            display: flex;
+        }
+        h2 {
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+        input {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80%;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card active" id="card1">
+    <h2>Card 1</h2>
+    <p><strong>Clue:</strong> 2 Hogwarts houses share colors with Barça? 
+    hint: use "and"</p>
+    <input type="text" id="answer1" placeholder="Your answer">
+    <button onclick="checkAnswer(1, 'gryffindor and ravenclaw')">Submit</button>
+</div>
+
+<div class="card" id="card2">
+    <h2>Card 2</h2>
+    <p><strong>Clue:</strong> Solve this cipher: <code>yxozx cLobsbe</code> (Caesar cipher, shift -5).</p>
+    <input type="text" id="answer2" placeholder="Your answer">
+    <button onclick="checkAnswer(2, 'barca forever')">Submit</button>
+</div>
+
+<div class="card" id="card3">
+    <h2>Card 3</h2>
+    <p><strong>Clue:</strong> Scan this QR code to find your next clue!</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=Best+dental+spell%3F&size=150x150" alt="QR Code">
+    <input type="text" id="answer3" placeholder="Your answer">
+    <button onclick="checkAnswer(3, 'episkey')">Submit</button>
+</div>
+
+<div class="card" id="card4">
+    <h2>Card 4</h2>
+    <p><strong>Clue:</strong> What’s the golden object chased in Quidditch ?</p>
+    <input type="text" id="answer4" placeholder="Your answer">
+    <button onclick="checkAnswer(4, 'The Golden Snitch')">Submit</button>
+</div>
+
+<div class="card" id="card5">
+    <h2>Card 5</h2>
+    <p><strong>Clue:</strong> Unscramble this: <code>T E N T I D S</code>. It’s your future!</p>
+    <input type="text" id="answer5" placeholder="Your answer">
+    <button onclick="checkAnswer(5, 'dentist')">Submit</button>
+</div>
+
+<div class="card" id="card6">
+    <h2>Card 6</h2>
+    <p><strong>Clue:</strong> This binary reveals the best dental advice: <code>01000010 01110010 01110101 01110011 01101000</code>.</p>
+    <input type="text" id="answer6" placeholder="Your answer">
+    <button onclick="checkAnswer(6, 'brush')">Submit</button>
+</div>
+
+<div class="card" id="card7">
+    <h2>Card 7</h2>
+    <p><strong>Clue:</strong> What magical sport would be even better with a football?</p>
+    <input type="text" id="answer7" placeholder="Your answer">
+    <button onclick="checkAnswer(7, 'quidditch')">Submit</button>
+</div>
+
+<div class="card" id="card8">
+    <h2>Card 8</h2>
+    <p><strong>Clue:</strong> What is Barça’s famous motto? (Morse code: <code>-- . ... / --.- ..- . / ..- -. / -.- .-.. ..- -...</code>).</p>
+    <input type="text" id="answer8" placeholder="Your answer">
+    <button onclick="checkAnswer(8, 'mes que un club')">Submit</button>
+</div>
+
+<div class="card" id="card9">
+    <h2>Card 9</h2>
+    <p><strong>Clue:</strong> if iam ghost your are ? </p>
+    <input type="text" id="answer9" placeholder="Your answer">
+    <button onclick="checkAnswer(9, 'soap')">Submit</button>
+</div>
+
+<div class="card" id="card10">
+    <h2>Card 10</h2>
+    <p><strong>Clue:</strong> if you are harry potter iam ?</p>
+    <input type="text" id="answer10" placeholder="Your answer">
+    <button onclick="checkAnswer(10, 'Ron Weasley')">Submit</button>
+</div>
+
+<div class="card" id="card11">
+    <h2>Card 11</h2>
+    <p><strong>Final Message:</strong> Congratulations!Happy Birthday hermano! You will always be my Broski / homey / Chido / Pal / mate / Bruder / Elte / bro  </p>
+</div>
+
+<script>
+    function checkAnswer(cardNumber, correctAnswer) {
+        const input = document.getElementById(`answer${cardNumber}`);
+        if (input.value.toLowerCase() === correctAnswer.toLowerCase()) {
+            document.getElementById(`card${cardNumber}`).classList.remove('active');
+            const nextCard = document.getElementById(`card${cardNumber + 1}`);
+            if (nextCard) {
+                nextCard.classList.add('active');
+            } else {
+                alert('You have completed the puzzle!');
+            }
+        } else {
+            alert('Incorrect answer. Try again!');
+        }
+    }
+</script>
+
+</body>
+</html>
